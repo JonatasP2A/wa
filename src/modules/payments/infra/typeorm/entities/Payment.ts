@@ -8,7 +8,7 @@ import {
   Column,
 } from 'typeorm';
 
-import Pacient from './Pacient';
+import Pacient from '@modules/pacients/infra/typeorm/entities/Pacient';
 
 @Entity('payments')
 class Payment {

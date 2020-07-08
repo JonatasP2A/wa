@@ -7,8 +7,8 @@ import {
   Column,
 } from 'typeorm';
 
-import Attendance from './Attendance';
-import Payment from './Payment';
+import Attendance from '@modules/attendances/infra/typeorm/entities/Attendance';
+import Payment from '@modules/payments/infra/typeorm/entities/Payment';
 
 @Entity('pacients')
 class Pacient {
@@ -29,6 +29,9 @@ class Pacient {
 
   @Column()
   name: string;
+
+  @Column('decimal')
+  phone: number;
 
   @Column()
   cpf: string;
