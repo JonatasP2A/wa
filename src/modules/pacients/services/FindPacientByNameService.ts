@@ -4,18 +4,22 @@ import IPacientsRepository from '@modules/pacients/repositories/IPacientsReposit
 
 import Pacient from '@modules/pacients/infra/typeorm/entities/Pacient';
 
+interface IRequest {
+  name: string;
+}
+
 @injectable()
-class ListAllPacientsService {
+class FindPacientByNameService {
   constructor(
     @inject('PacientRepository')
     private pacientRepository: IPacientsRepository,
   ) {}
 
-  public async execute(): Promise<Pacient[] | undefined> {
-    const pacient = await this.pacientRepository.listAllPacients();
+  public async execute({ name }: IRequest): Promise<Pacient[] | undefined> {
+    const pacient = await this.pacientRepository.findByPartName(name);
 
     return pacient;
   }
 }
 
-export default ListAllPacientsService;
+export default FindPacientByNameService;

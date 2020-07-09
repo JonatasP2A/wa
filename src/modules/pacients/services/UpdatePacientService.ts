@@ -18,7 +18,7 @@ interface IRequest {
 }
 
 @injectable()
-class CreatePacientService {
+class UpdatePacientService {
   constructor(
     @inject('PacientRepository')
     private pacientRepository: IPacientsRepository,
@@ -70,4 +70,4 @@ class CreatePacientService {
   }
 }
 
-export default CreatePacientService;
+export default UpdatePacientService;

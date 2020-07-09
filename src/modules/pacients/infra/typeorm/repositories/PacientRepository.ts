@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, Like } from 'typeorm';
 
 import IPacientsRepository from '@modules/pacients/repositories/IPacientsRepository';
 
@@ -31,10 +31,31 @@ class PacientsRepository implements IPacientsRepository {
     return findName;
   }
 
+  public async findByPartName(name: string): Promise<Pacient[] | undefined> {
+    const findName = await this.ormRepository.find({
+      where: { name: Like(`${name.toUpperCase()}%`) },
+    });
+
+    if (!findName) {
+      return undefined;
+    }
+
+    return findName;
+  }
+
   public async findById(id: string): Promise<Pacient | undefined> {
     const pacientId = await this.ormRepository.findOne(id);
 
     return pacientId;
+  }
+
+  public async listAllPacients(): Promise<Pacient[] | undefined> {
+    const pacients = await this.ormRepository.find({
+      select: ['name'],
+      order: { name: 'ASC' },
+    });
+
+    return pacients;
   }
 
   public async save(pacient: Pacient): Promise<Pacient> {
