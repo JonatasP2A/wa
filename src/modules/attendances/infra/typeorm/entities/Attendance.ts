@@ -15,8 +15,11 @@ class Attendance {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => Pacient, pacient => pacient.attendance_id)
-  @JoinColumn({ name: 'attendance_id' })
+  @Column()
+  pacient_id: string;
+
+  @ManyToOne(() => Pacient)
+  @JoinColumn({ name: 'provider_id' })
   pacient: Pacient;
 
   @Column()

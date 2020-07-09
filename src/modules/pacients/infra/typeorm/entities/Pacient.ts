@@ -15,16 +15,10 @@ class Pacient {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @OneToMany(() => Attendance, attendance => attendance.pacient, {
-    eager: true,
-    cascade: true,
-  })
+  @OneToMany(() => Attendance, attendance => attendance.pacient)
   attendance_id: Attendance[];
 
-  @OneToMany(() => Payment, payment => payment.pacient, {
-    eager: true,
-    cascade: true,
-  })
+  @OneToMany(() => Payment, payment => payment.pacient)
   payment_id: Payment[];
 
   @Column()

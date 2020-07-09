@@ -16,6 +16,7 @@ export default class CreatePayments1594169260231 implements MigrationInterface {
           {
             name: 'pacient_id',
             type: 'uuid',
+            isNullable: true,
           },
           {
             name: 'form_payment',

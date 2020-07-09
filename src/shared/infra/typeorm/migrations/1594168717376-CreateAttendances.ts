@@ -17,6 +17,7 @@ export default class CreateAttendances1594168717376
           {
             name: 'pacient_id',
             type: 'uuid',
+            isNullable: true,
           },
           {
             name: 'start_hour',
