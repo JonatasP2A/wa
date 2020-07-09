@@ -1,6 +1,6 @@
 export default interface ICreatePacientDTO {
   name: string;
-  phone?: number;
+  phone?: string;
   cpf?: string;
   address?: string;
   job?: string;

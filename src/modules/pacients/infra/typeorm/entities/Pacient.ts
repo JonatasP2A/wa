@@ -24,8 +24,8 @@ class Pacient {
   @Column()
   name: string;
 
-  @Column('decimal')
-  phone: number;
+  @Column()
+  phone: string;
 
   @Column()
   cpf: string;

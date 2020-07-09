@@ -7,13 +7,7 @@ import IPacientsRepository from '@modules/pacients/repositories/IPacientsReposit
 import Pacient from '@modules/pacients/infra/typeorm/entities/Pacient';
 
 interface IRequest {
-  name: string;
-  phone?: string;
-  cpf?: string;
-  address?: string;
-  job?: string;
-  birthday?: string;
-  instagram?: string;
+  id: string;
 }
 
 @injectable()
@@ -23,16 +17,12 @@ class CreatePacientService {
     private pacientRepository: IPacientsRepository,
   ) {}
 
-  public async execute(data: IRequest): Promise<Pacient> {
-    const checkPacientExists = await this.pacientRepository.findByName(
-      data.name,
-    );
+  public async execute({ id }: IRequest): Promise<Pacient | undefined> {
+    const pacient = await this.pacientRepository.findById(id);
 
-    if (checkPacientExists) {
-      throw new AppError('Paciente já está cadastrado.');
+    if (!pacient) {
+      throw new AppError('Paciente não cadastrado.');
     }
-
-    const pacient = await this.pacientRepository.create(data);
 
     return pacient;
   }

@@ -22,13 +22,23 @@ class PacientsRepository implements IPacientsRepository {
   }
 
   public async findByName(name: string): Promise<Pacient | undefined> {
-    const findName = await this.ormRepository.findOne(name);
+    const findName = await this.ormRepository.findOne({ where: { name } });
 
     if (!findName) {
       return undefined;
     }
 
     return findName;
+  }
+
+  public async findById(id: string): Promise<Pacient | undefined> {
+    const pacientId = await this.ormRepository.findOne(id);
+
+    return pacientId;
+  }
+
+  public async save(pacient: Pacient): Promise<Pacient> {
+    return this.ormRepository.save(pacient);
   }
 }
 

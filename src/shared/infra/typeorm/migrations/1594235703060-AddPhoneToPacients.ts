@@ -7,7 +7,7 @@ export default class AddPhoneToPacients1594235703060
       'pacients',
       new TableColumn({
         name: 'phone',
-        type: 'int',
+        type: 'varchar',
         isNullable: true,
       }),
     );
