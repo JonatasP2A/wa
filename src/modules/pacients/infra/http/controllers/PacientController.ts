@@ -5,12 +5,21 @@ import CreatePacientService from '@modules/pacients/services/CreatePacientServic
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, cpf, address, job, birthday, instagram } = request.body;
+    const {
+      name,
+      phone,
+      cpf,
+      address,
+      job,
+      birthday,
+      instagram,
+    } = request.body;
 
     const createPacient = container.resolve(CreatePacientService);
 
     const user = await createPacient.execute({
       name,
+      phone,
       cpf,
       address,
       job,

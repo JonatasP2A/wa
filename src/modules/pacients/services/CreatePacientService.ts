@@ -8,6 +8,7 @@ import Pacient from '@modules/pacients/infra/typeorm/entities/Pacient';
 
 interface IRequest {
   name: string;
+  phone?: number;
   cpf?: string;
   address?: string;
   job?: string;
