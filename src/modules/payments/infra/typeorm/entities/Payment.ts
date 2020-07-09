@@ -32,7 +32,7 @@ class Payment {
   payment_day: Date;
 
   @Column()
-  agency: string;
+  agency: number;
 
   @Column()
   name_cheque: string;

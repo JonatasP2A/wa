@@ -16,10 +16,10 @@ class Pacient {
   id: string;
 
   @OneToMany(() => Attendance, attendance => attendance.pacient)
-  attendance_id: Attendance[];
+  attendance_id: Attendance;
 
   @OneToMany(() => Payment, payment => payment.pacient)
-  payment_id: Payment[];
+  payment_id: Payment;
 
   @Column()
   name: string;

@@ -5,17 +5,17 @@ import IPacientsRepository from '@modules/pacients/repositories/IPacientsReposit
 import Pacient from '@modules/pacients/infra/typeorm/entities/Pacient';
 
 @injectable()
-class FindPacientService {
+class FindAllPacientsService {
   constructor(
     @inject('PacientRepository')
     private pacientRepository: IPacientsRepository,
   ) {}
 
-  public async execute(id: string): Promise<Pacient | undefined> {
-    const pacient = await this.pacientRepository.findById(id);
+  public async execute(): Promise<Pacient[] | undefined> {
+    const pacient = await this.pacientRepository.listAllPacients();
 
     return pacient;
   }
 }
 
-export default FindPacientService;
+export default FindAllPacientsService;

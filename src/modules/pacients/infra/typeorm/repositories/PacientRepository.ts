@@ -51,7 +51,15 @@ class PacientsRepository implements IPacientsRepository {
 
   public async listAllPacients(): Promise<Pacient[] | undefined> {
     const pacients = await this.ormRepository.find({
-      select: ['name'],
+      select: [
+        'name',
+        'phone',
+        'cpf',
+        'address',
+        'job',
+        'instagram',
+        'birthday',
+      ],
       order: { name: 'ASC' },
     });
 

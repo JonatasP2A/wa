@@ -2,15 +2,13 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { classToClass } from 'class-transformer';
 
-import FindPacientByNameService from '@modules/pacients/services/FindPacientByNameService';
+import FindAllPacientsService from '@modules/pacients/services/FindAllPacientsService';
 
 export default class UsersController {
   public async show(request: Request, response: Response): Promise<Response> {
-    const { name } = request.params;
+    const showPacients = container.resolve(FindAllPacientsService);
 
-    const showPacients = container.resolve(FindPacientByNameService);
-
-    const pacient = await showPacients.execute({ name });
+    const pacient = await showPacients.execute();
 
     return response.json(classToClass(pacient));
   }

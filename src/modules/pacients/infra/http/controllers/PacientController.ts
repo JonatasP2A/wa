@@ -38,7 +38,7 @@ export default class UsersController {
 
     const showPacient = container.resolve(FindPacientService);
 
-    const pacient = await showPacient.execute({ id });
+    const pacient = await showPacient.execute(id);
 
     return response.json(classToClass(pacient));
   }
