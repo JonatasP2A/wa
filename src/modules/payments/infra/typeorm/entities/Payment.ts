@@ -19,7 +19,7 @@ class Payment {
   pacient_id: string;
 
   @ManyToOne(() => Pacient)
-  @JoinColumn({ name: 'provider_id' })
+  @JoinColumn({ name: 'pacient_id' })
   pacient: Pacient;
 
   @Column()
@@ -33,6 +33,9 @@ class Payment {
 
   @Column()
   agency: number;
+
+  @Column()
+  account: number;
 
   @Column()
   name_cheque: string;

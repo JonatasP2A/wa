@@ -7,12 +7,15 @@ import {
   Column,
 } from 'typeorm';
 
+import { Expose } from 'class-transformer';
+
 import Attendance from '@modules/attendances/infra/typeorm/entities/Attendance';
 import Payment from '@modules/payments/infra/typeorm/entities/Payment';
 
 @Entity('pacients')
 class Pacient {
   @PrimaryGeneratedColumn('uuid')
+  @Expose()
   id: string;
 
   @OneToMany(() => Attendance, attendance => attendance.pacient)
