@@ -15,6 +15,6 @@ const paymentsInMonthController = new PaymentsInMonthController();
 paymentsRouter.post('/cheque', paymentChequeController.create);
 paymentsRouter.post('/cash-debit', paymentCashController.create);
 paymentsRouter.post('/credit', paymentCreditController.create);
-paymentsRouter.get('/', paymentsInMonthController.index);
+paymentsRouter.get('/', paymentsInMonthController.show);
 
 export default paymentsRouter;

@@ -5,7 +5,7 @@ import { classToClass } from 'class-transformer';
 import ListMonthPaymentsService from '@modules/payments/services/ListMonthPaymentsService';
 
 export default class PaymentsInMonthController {
-  public async index(request: Request, response: Response): Promise<Response> {
+  public async show(request: Request, response: Response): Promise<Response> {
     const { month, year } = request.query;
 
     const listPayments = container.resolve(ListMonthPaymentsService);
