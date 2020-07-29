@@ -40,6 +40,16 @@ class PaymentsRepository implements IPaymentsRepository {
 
     return payments;
   }
+
+  public async findById(id: string): Promise<Payment | undefined> {
+    const payment = await this.ormRepository.findOne(id);
+
+    return payment;
+  }
+
+  public async remove(data: Payment): Promise<void> {
+    await this.ormRepository.remove(data);
+  }
 }
 
 export default PaymentsRepository;
