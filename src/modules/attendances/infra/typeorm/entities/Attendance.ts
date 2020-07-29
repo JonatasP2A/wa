@@ -18,14 +18,14 @@ class Attendance {
   @Column()
   pacient_id: string;
 
-  @ManyToOne(() => Pacient)
-  @JoinColumn({ name: 'provider_id' })
+  @ManyToOne(() => Pacient, { eager: true })
+  @JoinColumn({ name: 'pacient_id' })
   pacient: Pacient;
 
-  @Column()
+  @Column('timestamp with time zone')
   start_hour: Date;
 
-  @Column()
+  @Column('timestamp with time zone')
   end_hour: Date;
 
   @Column()

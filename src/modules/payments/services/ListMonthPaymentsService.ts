@@ -16,13 +16,11 @@ class ListMonthPaymentsService {
   public async execute({
     month,
     year,
-  }: IFindAllPaymentsInMonthDTO): Promise<Payment[] | undefined> {
+  }: IFindAllPaymentsInMonthDTO): Promise<Payment[]> {
     const payments = await this.paymentsRepository.listMonthPayments({
       month,
       year,
     });
-
-    console.log(payments);
 
     return payments;
   }

@@ -59,7 +59,7 @@ class CreatePaymentCreditService {
         pacient_id,
         form_payment,
         payment_day: result,
-        amount,
+        amount: amount / quota,
       });
       payments.push(payment);
     }

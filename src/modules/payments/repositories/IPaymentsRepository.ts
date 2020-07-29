@@ -5,7 +5,5 @@ import IFindAllPaymentsInMonthDTO from '@modules/payments/dtos/IFindAllPaymentsI
 
 export default interface IPaymentsRepository {
   create(data: ICreatePaymentDTO): Promise<Payment>;
-  listMonthPayments(
-    data: IFindAllPaymentsInMonthDTO,
-  ): Promise<Payment[] | undefined>;
+  listMonthPayments(data: IFindAllPaymentsInMonthDTO): Promise<Payment[]>;
 }

@@ -1,4 +1,5 @@
 import { getRepository, Repository } from 'typeorm';
+import { parseJSON, isSameDay } from 'date-fns';
 
 import Attendance from '@modules/attendances/infra/typeorm/entities/Attendance';
 
@@ -19,20 +20,29 @@ class AttendancesRepository implements IAttendanceRepository {
     end_hour,
     treatment,
   }: ICreateAttendanceDTO): Promise<Attendance> {
-    const pacient = await this.ormRepository.findOne(pacient_id);
-
     const attendance = this.ormRepository.create({
-      pacient,
+      pacient_id,
       start_hour,
       end_hour,
       treatment,
     });
 
+    await this.ormRepository.save(attendance);
+
     return attendance;
   }
 
-  public async findByDate(date: Date): <Attendance | undefined> {
+  public async findByDate(date: Date): Promise<Attendance[]> {
+    const formatedDate = parseJSON(date);
 
+    const attendances = await this.ormRepository.find({
+      where: {
+        start_hour: isSameDay(date, formatedDate),
+      },
+      order: { start_hour: 'DESC' },
+    });
+
+    return attendances;
   }
 }
 

@@ -10,7 +10,7 @@ export default class PaymentsInMonthController {
 
     const listPayments = container.resolve(ListMonthPaymentsService);
 
-    const payments = listPayments.execute({
+    const payments = await listPayments.execute({
       month: Number(month),
       year: Number(year),
     });

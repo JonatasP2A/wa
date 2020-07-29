@@ -18,7 +18,7 @@ class Payment {
   @Column()
   pacient_id: string;
 
-  @ManyToOne(() => Pacient)
+  @ManyToOne(() => Pacient, { eager: true })
   @JoinColumn({ name: 'pacient_id' })
   pacient: Pacient;
 
@@ -31,10 +31,10 @@ class Payment {
   @Column()
   payment_day: Date;
 
-  @Column()
+  @Column('int')
   agency: number;
 
-  @Column()
+  @Column('int')
   account: number;
 
   @Column()

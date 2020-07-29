@@ -33,7 +33,7 @@ class PacientsRepository implements IPacientsRepository {
 
   public async findByPartName(name: string): Promise<Pacient[] | undefined> {
     const findName = await this.ormRepository.find({
-      where: { name: Like(`${name.toUpperCase()}%`) },
+      where: { name: Like(`${name}%`) },
     });
 
     if (!findName) {
@@ -52,6 +52,7 @@ class PacientsRepository implements IPacientsRepository {
   public async listAllPacients(): Promise<Pacient[] | undefined> {
     const pacients = await this.ormRepository.find({
       select: [
+        'id',
         'name',
         'phone',
         'cpf',

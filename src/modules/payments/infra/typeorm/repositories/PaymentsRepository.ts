@@ -25,7 +25,7 @@ class PaymentsRepository implements IPaymentsRepository {
   public async listMonthPayments({
     month,
     year,
-  }: IFindAllPaymentsInMonthDTO): Promise<Payment[] | undefined> {
+  }: IFindAllPaymentsInMonthDTO): Promise<Payment[]> {
     const parsedMonth = String(month).padStart(2, '0');
 
     const payments = await this.ormRepository.find({
@@ -35,6 +35,7 @@ class PaymentsRepository implements IPaymentsRepository {
             `to_char(${dateFieldName}, 'MM-YYYY') = '${parsedMonth}-${year}'`,
         ),
       },
+      order: { payment_day: 'DESC' },
     });
 
     return payments;

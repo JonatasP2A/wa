@@ -9,5 +9,7 @@ export default interface ICreatePaymentDTO {
   payment_day: Date;
   agency?: number;
   account?: number;
+  numCheque?: number;
   name_cheque?: string;
+  quota?: number;
 }

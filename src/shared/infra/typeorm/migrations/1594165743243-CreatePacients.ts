@@ -16,7 +16,6 @@ export default class CreatePacients1594165743243 implements MigrationInterface {
           {
             name: 'name',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'cpf',
