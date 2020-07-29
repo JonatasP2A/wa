@@ -1,5 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
-import { parseJSON, isSameDay } from 'date-fns';
+import { getRepository, Repository, Raw } from 'typeorm';
 
 import Attendance from '@modules/attendances/infra/typeorm/entities/Attendance';
 
@@ -33,16 +32,27 @@ class AttendancesRepository implements IAttendanceRepository {
   }
 
   public async findByDate(date: Date): Promise<Attendance[]> {
-    const formatedDate = parseJSON(date);
-
     const attendances = await this.ormRepository.find({
       where: {
-        start_hour: isSameDay(date, formatedDate),
+        start_hour: Raw(
+          dateFieldName =>
+            `to_char(${dateFieldName}, 'YYYY-MM-dd') = '${date}'`,
+        ),
       },
-      order: { start_hour: 'DESC' },
+      order: { start_hour: 'ASC' },
     });
 
     return attendances;
+  }
+
+  public async findById(id: string): Promise<Attendance | undefined> {
+    const attendance = await this.ormRepository.findOne(id);
+
+    return attendance;
+  }
+
+  public async remove(data: Attendance): Promise<void> {
+    await this.ormRepository.remove(data);
   }
 }
 

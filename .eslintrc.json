@@ -27,6 +27,7 @@
     "no-plusplus": "off",
     "no-await-in-loop": "off",
     "no-useless-constructor": "off",
+    "array-callback-return": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
