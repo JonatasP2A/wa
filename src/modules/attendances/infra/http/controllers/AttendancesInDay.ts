@@ -6,7 +6,7 @@ import ListAttendancesInDayService from '@modules/attendances/services/ListAtten
 
 export default class AttendanceInDayController {
   public async show(request: Request, response: Response): Promise<Response> {
-    const { date } = request.body;
+    const { date } = request.params;
 
     const listAttendances = container.resolve(ListAttendancesInDayService);
 

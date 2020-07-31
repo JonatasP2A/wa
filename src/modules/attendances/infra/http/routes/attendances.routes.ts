@@ -10,7 +10,7 @@ const attendancesInDay = new AttendancesInDay();
 const removeAttendanceController = new RemoveAttendanceController();
 
 paymentsRouter.post('/', attendancesController.create);
-paymentsRouter.get('/', attendancesInDay.show);
+paymentsRouter.get('/:date', attendancesInDay.show);
 paymentsRouter.delete('/:id', removeAttendanceController.remove);
 
 export default paymentsRouter;

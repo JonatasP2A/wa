@@ -11,7 +11,7 @@ class ListAttendancesInDayService {
     private attendancesRepository: IAttendancesRepository,
   ) {}
 
-  public async execute(date: Date): Promise<Attendance[]> {
+  public async execute(date: string): Promise<Attendance[]> {
     const attendances = await this.attendancesRepository.findByDate(date);
 
     return attendances;

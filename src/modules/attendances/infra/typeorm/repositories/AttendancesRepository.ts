@@ -31,7 +31,7 @@ class AttendancesRepository implements IAttendanceRepository {
     return attendance;
   }
 
-  public async findByDate(date: Date): Promise<Attendance[]> {
+  public async findByDate(date: string): Promise<Attendance[]> {
     const attendances = await this.ormRepository.find({
       where: {
         start_hour: Raw(
