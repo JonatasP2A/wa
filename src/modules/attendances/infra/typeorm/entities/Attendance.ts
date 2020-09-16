@@ -22,10 +22,10 @@ class Attendance {
   @JoinColumn({ name: 'pacient_id' })
   pacient: Pacient;
 
-  @Column('timestamp with time zone')
+  @Column('timestamp without time zone')
   start_hour: Date;
 
-  @Column('timestamp with time zone')
+  @Column('timestamp without time zone')
   end_hour: Date;
 
   @Column()
