@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { isBefore, parseJSON } from 'date-fns';
+import { isBefore } from 'date-fns';
 
 import AppError from '@shared/errors/AppError';
 
@@ -31,10 +31,10 @@ class CreateAttendanceService {
     end_hour,
     treatment,
   }: IRequest): Promise<Attendance> {
-    const start = parseJSON(start_hour);
-    const end = parseJSON(end_hour);
+    // const start = parseJSON(start_hour);
+    // const end = parseJSON(end_hour);
 
-    if (isBefore(end, start)) {
+    if (isBefore(end_hour, start_hour)) {
       throw new AppError('Horário final antes do inicial.');
     }
 
@@ -46,8 +46,8 @@ class CreateAttendanceService {
 
     const attendance = await this.attendancesRepository.create({
       pacient_id,
-      start_hour: start,
-      end_hour: end,
+      start_hour,
+      end_hour,
       treatment,
     });
 
