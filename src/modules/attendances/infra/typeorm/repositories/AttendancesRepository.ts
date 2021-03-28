@@ -15,12 +15,14 @@ class AttendancesRepository implements IAttendanceRepository {
 
   public async create({
     pacient_id,
+    attendance_date,
     start_hour,
     end_hour,
     treatment,
   }: ICreateAttendanceDTO): Promise<Attendance> {
     const attendance = this.ormRepository.create({
       pacient_id,
+      attendance_date,
       start_hour,
       end_hour,
       treatment,
@@ -34,12 +36,12 @@ class AttendancesRepository implements IAttendanceRepository {
   public async findByDate(date: string): Promise<Attendance[]> {
     const attendances = await this.ormRepository.find({
       where: {
-        start_hour: Raw(
+        attendance_date: Raw(
           dateFieldName =>
             `to_char(${dateFieldName}, 'YYYY-MM-dd') = '${date}'`,
         ),
       },
-      order: { start_hour: 'ASC' },
+      order: { attendance_date: 'ASC' },
     });
 
     return attendances;

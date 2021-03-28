@@ -6,12 +6,19 @@ import CreateAttendanceService from '@modules/attendances/services/CreateAttenda
 
 export default class AttendanceController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { pacient_id, start_hour, end_hour, treatment } = request.body;
+    const {
+      pacient_id,
+      attendance_date,
+      start_hour,
+      end_hour,
+      treatment,
+    } = request.body;
 
     const createAttendance = container.resolve(CreateAttendanceService);
 
     const attendance = await createAttendance.execute({
       pacient_id,
+      attendance_date,
       start_hour,
       end_hour,
       treatment,

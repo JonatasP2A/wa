@@ -23,6 +23,9 @@ class Attendance {
   pacient: Pacient;
 
   @Column('timestamp without time zone')
+  attendance_date: Date;
+
+  @Column('timestamp without time zone')
   start_hour: Date;
 
   @Column('timestamp without time zone')

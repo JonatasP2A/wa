@@ -10,6 +10,7 @@ import Attendance from '@modules/attendances/infra/typeorm/entities/Attendance';
 
 interface IRequest {
   pacient_id: string;
+  attendance_date: Date;
   start_hour: Date;
   end_hour: Date;
   treatment: string;
@@ -27,6 +28,7 @@ class CreateAttendanceService {
 
   public async execute({
     pacient_id,
+    attendance_date,
     start_hour,
     end_hour,
     treatment,
@@ -46,6 +48,7 @@ class CreateAttendanceService {
 
     const attendance = await this.attendancesRepository.create({
       pacient_id,
+      attendance_date,
       start_hour,
       end_hour,
       treatment,
